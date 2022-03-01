@@ -8,7 +8,7 @@ function Counter (props) {
         <div>
             <h1>Saya Mesin Penghitung</h1>
             <p>Count: {props.count}</p>
-            <button>Increment</button>
+            <button onClick={props.onIncrementClick}>Increment</button>
         </div>
     );
 }
@@ -20,4 +20,14 @@ function mapStatetoProps(state){
     }
 }
 
-export default connect(mapStatetoProps)(Counter);
+function mapDispatchtoProps(dispatch){
+    return {
+        onIncrementClick : () => {
+            console.log('tombol di click')
+            const action = { type: 'INCREMENT'}
+            dispatch(action)
+        }
+    }
+}
+
+export default connect(mapStatetoProps, mapDispatchtoProps)(Counter);
